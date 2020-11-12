@@ -3,23 +3,26 @@ import random
 print("Welcome to Employee Wage Computation")
 
 WAGE_PER_HOUR = 20
-
+FULL_TIME_HOURS = 8
+PART_TIME_HOURS = 4
 day_hour = 0
 
-employee_attendance_type = ['is_absent', 'is_present']
-attendance_check = random.choice(employee_attendance_type)
 
-if attendance_check == employee_attendance_type[1]:
-    total_employee_types = ['full_time', 'part_time']
-    employee_type = random.choice(total_employee_types)
+def is_absent():
+    return day_hour
 
-    if employee_type == total_employee_types[0]:
-        day_hour = 8
-    else:
-        day_hour = 4
 
-elif attendance_check == employee_attendance_type[0]:
-    pass
+def is_full_time():
+    return FULL_TIME_HOURS
+
+
+def is_part_time():
+    return PART_TIME_HOURS
+
+
+employee_status = {0: is_absent, 1: is_full_time, 2: is_part_time}
+attendance_check = random.randint(0, 2)
+day_hour = employee_status.get(attendance_check)()
 
 employee_wage = WAGE_PER_HOUR * day_hour
 print("employee wage is : ", employee_wage)
