@@ -6,13 +6,13 @@ IS_ABSENT = 0
 IS_PRESENT = 1
 WAGE_PER_HOUR = 20
 
-full_day_hour = 0
+day_hour = 0
 attendance_check = random.randint(0, 1)
 if attendance_check == IS_PRESENT:
-    full_day_hour = 8
+    day_hour = 8
 
 elif attendance_check == IS_ABSENT:
-    pass
+    day_hour = 4
 
-employee_wage = WAGE_PER_HOUR * full_day_hour
+employee_wage = WAGE_PER_HOUR * day_hour
 print("employee wage is : ", employee_wage)
