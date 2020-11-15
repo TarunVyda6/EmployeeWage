@@ -8,6 +8,7 @@ class EmployeeWage:
     PART_TIME_HOURS = 4
 
     def compute_employee_wage(self, companies):
+        salary_list = {}
         for company in companies:
             current_working_hours = 0
             current_working_days = 0
@@ -20,10 +21,12 @@ class EmployeeWage:
                 total_employee_wage = total_employee_wage + daily_employee_wage
                 current_working_hours = current_working_hours + day_hour
                 current_working_days = current_working_days + 1
+            salary_list[company.get_company_name()] = total_employee_wage
             """
             prints the total employee wage of a company for that month
             """
             print("total employee wage of {} is : {}".format(company.get_company_name(), total_employee_wage))
+        return salary_list
 
     employee_status = {0: 0, 1: FULL_TIME_HOURS, 2: PART_TIME_HOURS}
 
@@ -43,4 +46,5 @@ print("Welcome to Employee Wage Computation")
 
 companies_list = [CompanyDetails('Amazon', 20, 20, 100), CompanyDetails('Microsoft', 30, 20, 100)]
 employee_wage = EmployeeWage()
-employee_wage.compute_employee_wage(companies_list)
+wage_list = employee_wage.compute_employee_wage(companies_list)
+print(wage_list)
