@@ -5,7 +5,8 @@ class EmployeeWageComputation:
     FULL_TIME_HOURS = 8
     PART_TIME_HOURS = 4
 
-    def __init__(self, wage_per_hour, days_for_month, hours_for_month):
+    def __init__(self, company_name, wage_per_hour, days_for_month, hours_for_month):
+        self.company_name = company_name
         self.wage_per_hour = wage_per_hour
         self.days_for_month = days_for_month
         self.hours_for_month = hours_for_month
@@ -18,11 +19,14 @@ class EmployeeWageComputation:
         current_working_days = 0
         total_employee_wage = 0
         while current_working_days <= self.days_for_month and current_working_hours <= self.hours_for_month:
-            day_hour, daily_employee_wage = employee_wage_computation.wage_calculation()
+            day_hour, daily_employee_wage = self.wage_calculation()
             total_employee_wage = total_employee_wage + daily_employee_wage
             current_working_hours = current_working_hours + day_hour
             current_working_days = current_working_days + 1
-        return total_employee_wage
+        """
+        prints the total employee wage of a company for that month
+        """
+        print("total employee wage of {} is : {}".format(self.company_name, total_employee_wage))
 
     employee_status = {0: 0, 1: FULL_TIME_HOURS, 2: PART_TIME_HOURS}
 
@@ -40,10 +44,7 @@ class EmployeeWageComputation:
 
 print("Welcome to Employee Wage Computation")
 
-employee_wage_computation = EmployeeWageComputation(20, 20, 100)
-total_employee_wage = employee_wage_computation.compute_employee_wage()
-
-"""
-prints the total employee wage for that month
-"""
-print(total_employee_wage)
+amazon = EmployeeWageComputation('Amazon', 20, 20, 100)
+microsoft = EmployeeWageComputation('Microsoft', 30, 20, 100)
+amazon.compute_employee_wage()
+microsoft.compute_employee_wage()
