@@ -1,6 +1,5 @@
 import random
-
-from employeewage.CompanyDetails import CompanyDetails
+import collections
 
 
 class EmployeeWage:
@@ -8,7 +7,7 @@ class EmployeeWage:
     PART_TIME_HOURS = 4
 
     def compute_employee_wage(self, companies):
-        salary_list = {}
+        salary_details = {}
         for company in companies:
             current_working_hours = 0
             current_working_days = 0
@@ -21,12 +20,9 @@ class EmployeeWage:
                 total_employee_wage = total_employee_wage + daily_employee_wage
                 current_working_hours = current_working_hours + day_hour
                 current_working_days = current_working_days + 1
-            salary_list[company.get_company_name()] = total_employee_wage
-            """
-            prints the total employee wage of a company for that month
-            """
-            print("total employee wage of {} is : {}".format(company.get_company_name(), total_employee_wage))
-        return salary_list
+            salary_details[company.get_company_name()] = total_employee_wage
+
+        return salary_details
 
     employee_status = {0: 0, 1: FULL_TIME_HOURS, 2: PART_TIME_HOURS}
 
@@ -41,10 +37,13 @@ class EmployeeWage:
         daily_employee_wage = wage_per_hour * day_hour
         return day_hour, daily_employee_wage
 
+    def get_employee_wage_sort_by_least_paid(self, companies):
+        companies_wage_list = self.compute_employee_wage(companies)
+        companies_wage_list_sorted = collections.OrderedDict(sorted(companies_wage_list.items(), key=lambda x: x[1]))
+        return companies_wage_list_sorted
 
-print("Welcome to Employee Wage Computation")
-
-companies_list = [CompanyDetails('Amazon', 20, 20, 100), CompanyDetails('Microsoft', 30, 20, 100)]
-employee_wage = EmployeeWage()
-wage_list = employee_wage.compute_employee_wage(companies_list)
-print(wage_list)
+    def get_employee_wage_sort_by_highest_paid(self, companies):
+        companies_wage_list = self.compute_employee_wage(companies)
+        companies_wage_list_sorted = collections.OrderedDict(
+            sorted(companies_wage_list.items(), key=lambda x: x[1], reverse=True))
+        return companies_wage_list_sorted
