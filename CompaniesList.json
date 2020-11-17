@@ -1,0 +1,40 @@
+{
+  "Companies": [
+    {
+      "name": "Amazon",
+      "wage": 50,
+      "days": 20,
+      "hours": 100
+    },
+    {
+      "name": "Google",
+      "wage": 60,
+      "days": 20,
+      "hours": 100
+    },
+    {
+      "name": "Microsoft",
+      "wage": 40,
+      "days": 20,
+      "hours": 100
+    },
+    {
+      "name": "Accenture",
+      "wage": 30,
+      "days": 20,
+      "hours": 100
+    },
+    {
+      "name": "IBM",
+      "wage": 20,
+      "days": 20,
+      "hours": 100
+    },
+    {
+      "name": "TCS",
+      "wage": 10,
+      "days": 20,
+      "hours": 100
+    }
+  ]
+}
