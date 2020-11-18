@@ -19,8 +19,8 @@ class ReadingJsonFile:
             json_data = my_json_file.read()
         except FileNotFoundError:
             raise FileNotFoundException("invalid file path")
-            my_json_file.close()
         try:
+            my_json_file.close()
             json_object = json.loads(json_data)
         except ValueError:
             raise InvalidFileDataException("invalid file data")
